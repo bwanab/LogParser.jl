@@ -1,8 +1,7 @@
 using LogParser, Test, GZip, CSV, DataFrames
 
 #Read in gzipped file
-gzipfile = gzopen(joinpath(dirname(@__FILE__), "data", "juliabloggers-apachecombined.gz"))
-jbapachecombined = CSV.read(gzipfile, delim='\t', datarow=1) |> DataFrame
+jbapachecombined = CSV.read(joinpath(dirname(@__FILE__), "data", "juliabloggers-apachecombined.gz"), delim='\t', skipto=1, DataFrame)
 
 #Parse file
 jbparsed = parseapachecombined.(jbapachecombined[!, :Column1])
